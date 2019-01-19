@@ -383,6 +383,12 @@ class Device {
         this.emit('temperature', temp);
         break;
       }
+      case 3: { //get from check_data
+        const data = Buffer.alloc(payload.length - 4, 0);
+        payload.copy(data, 0, 4);
+        this.emit('rawData', data);
+        break;
+      }
       case 4: { //get from check_data
         const data = Buffer.alloc(payload.length - 4, 0);
         payload.copy(data, 0, 4);
